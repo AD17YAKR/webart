@@ -6,6 +6,7 @@ import 'package:webart_assignment/model/login_request_model.dart';
 import 'package:webart_assignment/model/register_request_model.dart';
 import 'package:webart_assignment/routes/app_routes.dart';
 import 'package:webart_assignment/util/toast_message.dart';
+import '../model/otp_verify_model.dart';
 import '../model/register_response_model.dart';
 import '../model/login_response_model.dart';
 import '../provider/api_provider.dart';
@@ -19,7 +20,10 @@ class AuthService {
       showToastMessage('Login Successful! Welcome ');
       final box = GetStorage();
       box.write('token_code', loginResponse.tokenCode);
-      box.write('name', loginResponse.data.name);
+      box.write("id", loginResponse.data.id);
+      box.write("name", loginResponse.data.name);
+      box.write("email", loginResponse.data.email);
+      box.write("phone", loginResponse.data.phone);
       Get.offAllNamed(Routes.DASHBOARD);
       return loginResponse;
     } catch (e) {
@@ -32,12 +36,27 @@ class AuthService {
     try {
       final registerResponse =
           await _apiProvider.registerUser(registerRequestModel);
-      final box = GetStorage();
-      box.write('token_code', registerResponse.tokenCode);
-      box.write('name', registerResponse.data.name);
-      showToastMessage('Registration Successful!');
-      Get.offAllNamed(Routes.DASHBOARD);
+      showToastMessage(registerResponse.data.msg);
       return registerResponse;
+    } catch (e) {
+      showToastMessage(e.toString());
+      throw Exception('Registration Failed: $e');
+    }
+  }
+
+  Future<dynamic> verifyOTP(OTPVerifyModel otpVerifyModel) async {
+    try {
+      final response = await _apiProvider.verifyOTP(otpVerifyModel);
+      return response;
+    } catch (e) {
+      throw Exception('Registration Failed: $e');
+    }
+  }
+
+  Future<dynamic> resendOTP(String email) async {
+    try {
+      final response = await _apiProvider.resendOTP(email);
+      return response;
     } catch (e) {
       throw Exception('Registration Failed: $e');
     }
@@ -50,6 +69,7 @@ class AuthService {
 
   bool isUserLoggedIn() {
     String? jwt = getAccessToken();
+    print(jwt);
     if (jwt == '') {
       return false;
     } else {

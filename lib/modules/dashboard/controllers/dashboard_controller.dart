@@ -3,15 +3,19 @@ import 'package:get_storage/get_storage.dart';
 
 class DashBoardController extends GetxController {
   RxString name = "".obs;
+  RxString email = "".obs;
+  RxString phone = "".obs;
+
   @override
   void onInit() {
     super.onInit();
-    name.value = getName();
+    getName();
   }
 
-  String getName() {
+  void getName() {
     final box = GetStorage();
-    String name = box.read('name') ?? '';
-    return name;
+    name.value = box.read('name') ?? '';
+    email.value = box.read('email') ?? '';
+    phone.value = box.read('phone') ?? '';
   }
 }

@@ -21,7 +21,7 @@ class LoginController extends GetxController {
   void loginButtonPressed() async {
     if (formKey.currentState!.validate()) {
       final loginModel = LoginModel(
-        emailId: emailController.text,
+        email: emailController.text,
         password: passwordController.text,
       );
       authService.loginUser(loginModel);

@@ -1,10 +1,9 @@
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
+import '../controllers/login_controller.dart';
+import '../../../routes/app_routes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
-import '../../../routes/app_routes.dart';
-import '../controllers/login_controller.dart';
 
 class LoginView extends GetView<LoginController> {
   const LoginView({super.key});
@@ -81,7 +80,7 @@ class LoginView extends GetView<LoginController> {
           TextFormField(
             controller: controller.emailController,
             style: const TextStyle(
-              fontSize: 29,
+              fontSize: 22,
               fontWeight: FontWeight.w500,
               color: Colors.black87,
             ),
@@ -123,7 +122,7 @@ class LoginView extends GetView<LoginController> {
           TextFormField(
             controller: controller.passwordController,
             style: const TextStyle(
-              fontSize: 29,
+              fontSize: 22,
               fontWeight: FontWeight.w500,
               color: Colors.black87,
             ),

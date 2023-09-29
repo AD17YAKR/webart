@@ -25,53 +25,17 @@ class RegisterResponseModel {
 
 class Data {
   Data({
-    required this.id,
-    required this.emailId,
-    required this.password,
-    required this.name,
-    required this.otp,
-    required this.isVerified,
-    required this.isActive,
-    required this.createdAt,
-    required this.updatedAt,
-    required this.V,
+    required this.msg,
   });
-  late final String id;
-  late final String emailId;
-  late final String password;
-  late final String name;
-  late final String otp;
-  late final String isVerified;
-  late final String isActive;
-  late final String createdAt;
-  late final String updatedAt;
-  late final int V;
+  late final String msg;
 
   Data.fromJson(Map<String, dynamic> json) {
-    id = json['_id'];
-    emailId = json['emailId'];
-    password = json['password'];
-    name = json['name'];
-    otp = json['otp'];
-    isVerified = json['isVerified'];
-    isActive = json['isActive'];
-    createdAt = json['createdAt'];
-    updatedAt = json['updatedAt'];
-    V = json['__v'];
+    msg = json['msg'];
   }
 
   Map<String, dynamic> toJson() {
     final _data = <String, dynamic>{};
-    _data['_id'] = id;
-    _data['emailId'] = emailId;
-    _data['password'] = password;
-    _data['name'] = name;
-    _data['otp'] = otp;
-    _data['isVerified'] = isVerified;
-    _data['isActive'] = isActive;
-    _data['createdAt'] = createdAt;
-    _data['updatedAt'] = updatedAt;
-    _data['__v'] = V;
+    _data['msg'] = msg;
     return _data;
   }
 }

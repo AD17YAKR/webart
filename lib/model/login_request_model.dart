@@ -1,19 +1,19 @@
 class LoginModel {
   LoginModel({
-    required this.emailId,
-    required this.password,
+    this.email,
+    this.password,
   });
-  late final String emailId;
-  late final String password;
+  String? email;
+  String? password;
 
   LoginModel.fromJson(Map<String, dynamic> json) {
-    emailId = json['emailId'];
+    email = json['email'];
     password = json['password'];
   }
 
   Map<String, dynamic> toJson() {
     final _data = <String, dynamic>{};
-    _data['emailId'] = emailId;
+    _data['email'] = email;
     _data['password'] = password;
     return _data;
   }
